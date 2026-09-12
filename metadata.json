@@ -1,0 +1,6 @@
+{
+  "name": "VascTwin Heart Pulse",
+  "description": "Real-time biometric heart rate data visualization and patient-specific 4-element Windkessel carotid hemodynamic digital twin for clinical monitoring and quick data analysis.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

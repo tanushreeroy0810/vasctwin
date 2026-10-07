@@ -149,7 +149,7 @@ export const ClinicalValidationHub: React.FC<ClinicalValidationHubProps> = ({ on
           <div className="space-y-2">
             <div className="flex items-center gap-2.5">
               <span className="px-2.5 py-0.5 rounded-md bg-cyan-400 text-slate-950 text-xs font-black font-mono tracking-wider uppercase">
-                Clinical Validation &amp; Research Defense
+                Clinical Validation &amp; Model Verification
               </span>
               <span className="text-xs font-mono text-slate-300 flex items-center gap-1">
                 <Scale size={13} className="text-cyan-400" /> Investigational Computational Prototype
@@ -159,7 +159,7 @@ export const ClinicalValidationHub: React.FC<ClinicalValidationHubProps> = ({ on
               Scientific Positioning, Physician Benefits &amp; Model Bounds
             </h2>
             <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-              Transparent scientific assessment answering key clinical, viva, and hackathon evaluation questions:
+              Transparent scientific assessment addressing key clinical evaluation metrics and model bounds:
               empirical validation error rates, physician decision-support utility, and the boundary between physiological modeling and clinical diagnosis.
             </p>
           </div>
@@ -353,7 +353,7 @@ export const ClinicalValidationHub: React.FC<ClinicalValidationHubProps> = ({ on
             <div className="bg-slate-900 text-slate-100 rounded-2xl p-6 space-y-3">
               <div className="flex items-center gap-2 text-cyan-400 font-mono text-xs font-bold uppercase tracking-wider">
                 <HelpCircle size={15} />
-                <span>Viva / Hackathon Defense: Why Avoid Saying "The Model is 95% Accurate"</span>
+                <span>Statistical Precision: Why Hemodynamic Accuracy is Expressed as Error Bounds</span>
               </div>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
                 Claiming a generic “95% accuracy” is scientifically flawed because hemodynamic accuracy depends on:

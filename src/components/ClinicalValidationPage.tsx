@@ -154,20 +154,20 @@ export const ClinicalValidationPage: React.FC<ClinicalValidationPageProps> = ({
         <div className="space-y-1.5">
           <div className="flex items-center gap-2.5">
             <span className="px-2.5 py-0.5 rounded-md bg-indigo-100 text-indigo-800 text-xs font-mono font-bold tracking-wider uppercase">
-              Web Page: Clinical Validation &amp; Defense
+              Clinical Validation &amp; Verification
             </span>
             <span className="px-2.5 py-0.5 rounded-md bg-amber-100 text-amber-900 border border-amber-300 text-xs font-mono font-bold">
               Investigational Computational Prototype
             </span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-            CLINICAL VALIDATION &amp; RESEARCH DEFENSE
+            CLINICAL VALIDATION &amp; SCIENTIFIC BENCHMARKS
           </h1>
           <h2 className="text-base sm:text-lg font-semibold text-indigo-900">
             Scientific Positioning, Physician Benefits &amp; Model Bounds
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 max-w-4xl leading-relaxed">
-            Transparent scientific assessment answering key clinical, viva, and hackathon evaluation questions:
+            Transparent scientific assessment addressing key clinical evaluation metrics and model bounds:
             empirical validation error rates, physician decision-support utility, and the boundary between physiological modeling and clinical diagnosis.
           </p>
         </div>
@@ -347,7 +347,7 @@ export const ClinicalValidationPage: React.FC<ClinicalValidationPageProps> = ({
             <div>
               <div className="flex items-center gap-2 text-emerald-700 font-mono text-xs font-bold uppercase tracking-wider">
                 <BarChart3 size={16} />
-                <span>Empirical Accuracy &amp; Defense</span>
+                <span>Empirical Accuracy &amp; Benchmarks</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-black text-slate-900 mt-1">
                 Validation Error &amp; Benchmarks (2.51–6.45%)
@@ -402,11 +402,11 @@ export const ClinicalValidationPage: React.FC<ClinicalValidationPageProps> = ({
             </div>
           </div>
 
-          {/* Viva / Hackathon Defense: Why Not Say "95% Accurate"? */}
+          {/* Statistical Precision: Why Hemodynamic Accuracy is Expressed as Error Bounds */}
           <div className="bg-slate-900 text-slate-100 rounded-2xl p-6 sm:p-7 space-y-4">
             <div className="flex items-center gap-2 text-cyan-400 font-mono text-xs font-bold uppercase tracking-wider">
               <HelpCircle size={16} />
-              <span>Viva / Hackathon Defense: Why Avoid Saying "The Model is 95% Accurate"</span>
+              <span>Statistical Precision: Why Hemodynamic Accuracy is Expressed as Error Bounds</span>
             </div>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
               Claiming a generic “95% accuracy” is scientifically flawed because hemodynamic accuracy is not a binary classification metric. It depends on:
@@ -430,7 +430,7 @@ export const ClinicalValidationPage: React.FC<ClinicalValidationPageProps> = ({
               </div>
             </div>
             <div className="p-4 rounded-xl bg-slate-800 border border-emerald-500/40 text-xs sm:text-sm font-mono text-emerald-400">
-              <strong>Defensible Academic Answer:</strong> “In the published peer-reviewed foundation study, the four-element Windkessel model demonstrated reported validation error rates of 2.51% and 6.45% against measured normotensive carotid waveforms.”
+              <strong>Published Clinical Benchmark:</strong> “In the published peer-reviewed foundation study, the four-element Windkessel model demonstrated reported validation error rates of 2.51% and 6.45% against measured normotensive carotid waveforms.”
             </div>
           </div>
 
@@ -475,11 +475,11 @@ export const ClinicalValidationPage: React.FC<ClinicalValidationPageProps> = ({
                 The 6 Model Limitations &amp; Extensions
               </h3>
               <p className="text-xs sm:text-sm text-slate-500 font-sans mt-0.5">
-                Transforming academic research gaps into a defensible clinical software architecture.
+                Transforming computational research boundaries into a validated clinical software architecture.
               </p>
             </div>
             <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-50 text-amber-900 border border-amber-200">
-              Rigorous Defense
+              Methodological Bounds
             </span>
           </div>
 

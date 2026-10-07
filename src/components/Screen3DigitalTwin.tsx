@@ -542,11 +542,11 @@ export const Screen3DigitalTwin: React.FC<Screen3DigitalTwinProps> = ({
             </div>
           </div>
 
-          {/* Straight-to-the-Point Viva & Biomechanics Explanation */}
+          {/* Clinical Biomechanics & Spatial Architecture */}
           <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-7 shadow-xs">
             <h3 className="text-lg font-bold text-slate-900 mb-4 pb-2 border-b border-slate-100 flex items-center gap-2">
               <Activity className="text-indigo-600" size={20} />
-              <span>3D Digital Twin: Core Physics & Viva Defense Guide</span>
+              <span>3D Digital Twin: Biomechanical Architecture &amp; Clinical Utility</span>
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 text-slate-700">
@@ -554,10 +554,10 @@ export const Screen3DigitalTwin: React.FC<Screen3DigitalTwinProps> = ({
               <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
                 <div className="flex items-center gap-2 text-indigo-700 font-bold text-base">
                   <span className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center text-xs">1</span>
-                  <h4>What is the 3D Artery?</h4>
+                  <h4>Common Carotid Artery Twin</h4>
                 </div>
                 <p className="text-sm leading-relaxed text-slate-600">
-                  It is a personalized, interactive 3D WebGL reconstruction of the patient's <strong>Common Carotid Artery (CCA)</strong>. It models the arterial geometry using the patient's exact lumen radius (<code className="text-indigo-600 font-mono font-semibold">{inputData.arteryRadius} mm</code>) and wall thickness (<code className="text-indigo-600 font-mono font-semibold">{inputData.wallThickness} mm</code>).
+                  Personalized, interactive 3D WebGL reconstruction of the patient's <strong>Common Carotid Artery (CCA)</strong>. It models the arterial geometry using the patient's exact lumen radius (<code className="text-indigo-600 font-mono font-semibold">{inputData.arteryRadius} mm</code>) and wall thickness (<code className="text-indigo-600 font-mono font-semibold">{inputData.wallThickness} mm</code>).
                 </p>
               </div>
 
@@ -565,30 +565,30 @@ export const Screen3DigitalTwin: React.FC<Screen3DigitalTwinProps> = ({
               <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
                 <div className="flex items-center gap-2 text-indigo-700 font-bold text-base">
                   <span className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center text-xs">2</span>
-                  <h4>How Does the Physics Work?</h4>
+                  <h4>Real-Time ODE Coupling</h4>
                 </div>
                 <p className="text-sm leading-relaxed text-slate-600">
-                  The vessel does not use a canned GIF or pre-rendered loop. Its radial expansion is mathematically coupled in real time to the <strong>4-element Windkessel ODE solution</strong>. Systolic pressure waves cause elastic lumen dilatation based on compliance (<code className="text-indigo-600 font-mono font-semibold">Cv = {physiology.cv.toFixed(4)} mL/mmHg</code>).
+                  The vessel radial expansion is mathematically coupled in real time to the <strong>4-element Windkessel ODE solution</strong>. Systolic pressure waves cause elastic lumen dilatation based on arterial compliance (<code className="text-indigo-600 font-mono font-semibold">Cv = {physiology.cv.toFixed(4)} mL/mmHg</code>).
                 </p>
               </div>
 
-              {/* Card 3: "And What Else?" */}
+              {/* Card 3: Hemodynamic Features */}
               <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
                 <div className="flex items-center gap-2 text-indigo-700 font-bold text-base">
                   <span className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center text-xs">3</span>
-                  <h4>"And What Else Does It Do?"</h4>
+                  <h4>Spatial Hemodynamics &amp; Pathology</h4>
                 </div>
                 <p className="text-sm leading-relaxed text-slate-600">
-                  It simulates <strong>RBC blood particle velocity</strong>, dynamic <strong>Wall Shear Stress (WSS)</strong>, <strong>3/4 cutaway cross-section</strong>, and <strong>atheroma plaque stenosis</strong>. The wall color transitions from green (elastic) to red (calcified stiffness) depending on Weber et al. risk criteria.
+                  Simulates <strong>RBC blood particle velocity</strong>, dynamic <strong>Wall Shear Stress (WSS)</strong>, <strong>3/4 cutaway cross-section</strong>, and <strong>atheroma plaque stenosis</strong>. Wall coloration transitions from elastic green to rigid red based on Weber et al. arterial stiffness criteria.
                 </p>
               </div>
             </div>
 
-            {/* Quick Viva Q&A Pills */}
-            <div className="mt-5 p-4 rounded-xl bg-indigo-50/60 border border-indigo-100 text-sm text-indigo-950 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            {/* Clinical Value Callout */}
+            <div className="mt-5 p-4 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div>
-                <strong className="text-indigo-900 block font-semibold">Viva Pro-Tip:</strong>
-                <span>If asked: "Why not just display a 2D line graph?", answer: <em>"The 3D model transforms 1D ODE pressure values into spatial biomechanics—revealing wall strain, shear stress, and intimal remodeling critical for stroke risk assessment."</em></span>
+                <strong className="text-slate-900 block font-semibold">Clinical Significance:</strong>
+                <span>The 3D digital twin translates 1D ODE pressure dynamics into spatial lumen biomechanics—resolving regional wall strain, shear stress, and intimal remodeling critical for personalized carotid stroke risk assessment.</span>
               </div>
             </div>
           </div>

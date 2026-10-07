@@ -104,7 +104,14 @@ export const Vessel3D: React.FC<Vessel3DProps> = ({
     const camera = new THREE.PerspectiveCamera(38, mount.clientWidth / Math.max(mount.clientHeight, 1), 0.1, 50);
     let renderer: THREE.WebGLRenderer;
     try {
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+      renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+        powerPreference: 'high-performance',
+        preserveDrawingBuffer: true,
+      });
+      renderer.domElement.id = 'vasctwin-vessel-canvas';
+      renderer.domElement.className = 'w-full h-full block';
     } catch (e) {
       console.warn('WebGL not supported or initialization failed:', e);
       return;

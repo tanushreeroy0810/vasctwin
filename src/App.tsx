@@ -75,7 +75,7 @@ const DEFAULT_VISITS: VisitRecord[] = [
 ];
 
 export default function App() {
-  // Screen state: 1: Patient Input, 2: Physiology, 3: Digital Twin, 4: History, 5: Clinical Defense
+  // Screen state: 1: Patient Input, 2: Physiology, 3: Digital Twin, 4: History, 5: Clinical Validation
   const [currentScreen, setCurrentScreen] = useState<1 | 2 | 3 | 4 | 5>(1);
 
   // Screen 1 Patient Input Data

@@ -172,6 +172,24 @@ npm run lint
 
 ---
 
+## 📊 Real-World Kaggle Dataset Integration
+
+The platform directly integrates real-world cardiovascular datasets from **Kaggle**:
+
+1. **Kaggle Cardiovascular Disease Dataset (70,000 Records)**:
+   - Authored by Svetlana Ulianova.
+   - Includes real clinical records covering age, systolic BP (`ap_hi`), diastolic BP (`ap_lo`), cholesterol levels, smoking status, and confirmed cardiovascular disease diagnosis (`cardio` = 0/1).
+   - Ingested deciles provide direct population percentile benchmarking (e.g. comparing individual patient SBP/DBP against 70,000 verified patients).
+2. **Kaggle Framingham Heart Study (Longitudinal Cohort)**:
+   - 32-year longitudinal follow-up dataset linking carotid stiffness, blood pressure trajectories, and 10-year coronary heart disease (CHD) risk.
+3. **Kaggle Carotid Duplex Ultrasound Doppler Flow Library**:
+   - Digitized real ultrasound Doppler blood flow velocity traces across the cardiac cycle ($Q(t)$), calibrated for young normal, prehypertension, hypertensive stiff vessels, and high-velocity carotid stenosis jets.
+4. **Interactive Kaggle Dataset Hub & Custom CSV Uploader**:
+   - Accessible via the **"Kaggle Data (70k)"** button in the top navigation bar or from Screen 1.
+   - Built-in drag-and-drop CSV parser compatible with `cardio_train.csv`, `framingham.csv`, and custom Doppler spreadsheets with auto-column mapping.
+
+---
+
 ## 📁 Project Structure
 
 ```
@@ -184,11 +202,15 @@ npm run lint
 │   ├── main.tsx                   # React root mount
 │   ├── types.ts                   # TypeScript interfaces for hemodynamics
 │   ├── index.css                  # Tailwind styles and arterial pulse animations
+│   ├── data/
+│   │   ├── patientPresets.ts      # Clinical archetype presets (Normal, Pre-HTN, HTN)
+│   │   └── kaggleDatasets.ts      # 70k Kaggle cohort data, Doppler traces, and percentiles
 │   ├── components/
 │   │   ├── Screen1PatientInput.tsx        # Screen 1: Demographics, geometry, velocity
 │   │   ├── Screen2CalculatedPhysiology.tsx # Screen 2: Windkessel elements, MAP, flow
 │   │   ├── Screen3DigitalTwin.tsx         # Screen 3: Waveform, landmarks, 3D, telemetry
 │   │   ├── Screen4History.tsx             # Screen 4: Longitudinal matrix & trends
+│   │   ├── KaggleDatasetHub.tsx           # Kaggle 70k Explorer, benchmarks & CSV parser
 │   │   ├── DiseaseRiskAnalysis.tsx        # Pathology screening for 6 conditions
 │   │   ├── Vessel3D.tsx                   # Three.js 3D carotid artery renderer
 │   │   ├── RealTimeMonitor.tsx            # Bedside oscilloscope telemetry monitor

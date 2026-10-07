@@ -2,19 +2,17 @@ import React, { useState } from 'react';
 import { VisitRecord, DigitalTwinOutput, CalculatedPhysiology, PatientInputData } from '../types';
 import { ComparisonView } from './ComparisonView';
 import { QuickDataAnalysis } from './QuickDataAnalysis';
+import { DiseaseRiskAnalysis } from './DiseaseRiskAnalysis';
 import {
   Calendar,
-  Clock,
   ArrowLeft,
   PlusCircle,
   RotateCcw,
   TrendingUp,
-  Download,
-  CheckCircle2,
-  AlertTriangle,
   Columns3,
   FileSpreadsheet,
-  FileText,
+  Stethoscope,
+  Printer,
 } from 'lucide-react';
 import {
   LineChart,
@@ -47,7 +45,7 @@ export const Screen4History: React.FC<Screen4HistoryProps> = ({
   onResetHistory,
   onLoadVisit,
 }) => {
-  const [subTab, setSubTab] = useState<'matrix' | 'cohort' | 'export'>('matrix');
+  const [subTab, setSubTab] = useState<'matrix' | 'cohort' | 'diseases' | 'export'>('matrix');
 
   // Format trend data for charting across visits
   const trendData = visits.map((v) => ({
@@ -104,32 +102,32 @@ export const Screen4History: React.FC<Screen4HistoryProps> = ({
   };
 
   return (
-    <div className="max-w-6xl mx-auto space-y-8">
+    <div className="max-w-6xl mx-auto space-y-6">
       {/* Screen Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-5">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
         <div>
           <div className="flex items-center gap-3">
-            <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-700">
-              SCREEN 4 OF 4
+            <span className="text-sm font-semibold px-3 py-1 rounded-full bg-indigo-100 text-indigo-700">
+              Step 4 of 4
             </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-              Longitudinal History &amp; Comparative Analysis
-            </h2>
+            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+              Longitudinal Patient History
+            </h1>
           </div>
-          <p className="text-sm sm:text-base text-slate-600 mt-1.5">
-            Tracking vascular remodeling, peripheral resistance, compliance, and clinical cohort benchmarking.
+          <p className="text-base text-slate-600 mt-1">
+            Track arterial remodeling, vascular resistance, compliance, and clinical trends over patient visits.
           </p>
         </div>
 
-        {/* Sub-tabs for History Screen: Matrix | Cohort Benchmark | Clinical Export */}
-        <div className="flex items-center bg-slate-200/90 p-1 rounded-xl text-xs sm:text-sm font-mono">
+        {/* Sub-tabs for History Screen */}
+        <div className="flex flex-wrap items-center gap-2 bg-slate-200/80 p-1.5 rounded-2xl text-sm font-semibold">
           <button
             type="button"
             onClick={() => setSubTab('matrix')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all font-bold ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all cursor-pointer ${
               subTab === 'matrix'
-                ? 'bg-white text-indigo-700 shadow-2xs'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-white text-indigo-700 shadow-xs'
+                : 'text-slate-700 hover:text-slate-900'
             }`}
           >
             <Calendar size={16} />
@@ -139,27 +137,40 @@ export const Screen4History: React.FC<Screen4HistoryProps> = ({
           <button
             type="button"
             onClick={() => setSubTab('cohort')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all font-bold ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all cursor-pointer ${
               subTab === 'cohort'
-                ? 'bg-white text-indigo-700 shadow-2xs'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-white text-indigo-700 shadow-xs'
+                : 'text-slate-700 hover:text-slate-900'
             }`}
           >
             <Columns3 size={16} />
-            <span>Cohort Benchmark</span>
+            <span>Cohort Comparison</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setSubTab('diseases')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all cursor-pointer ${
+              subTab === 'diseases'
+                ? 'bg-white text-indigo-700 shadow-xs'
+                : 'text-slate-700 hover:text-slate-900'
+            }`}
+          >
+            <Stethoscope size={16} />
+            <span>Pathology Screening</span>
           </button>
 
           <button
             type="button"
             onClick={() => setSubTab('export')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all font-bold ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all cursor-pointer ${
               subTab === 'export'
-                ? 'bg-white text-indigo-700 shadow-2xs'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-white text-indigo-700 shadow-xs'
+                : 'text-slate-700 hover:text-slate-900'
             }`}
           >
             <FileSpreadsheet size={16} />
-            <span>Report &amp; Export</span>
+            <span>Clinical Summary</span>
           </button>
         </div>
       </div>
@@ -170,24 +181,24 @@ export const Screen4History: React.FC<Screen4HistoryProps> = ({
           <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
             <div className="px-6 py-4 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center gap-2.5">
-                <Calendar size={18} className="text-indigo-600" />
-                <h3 className="text-sm sm:text-base font-bold font-mono text-slate-900 uppercase tracking-wider">
-                  Clinical Biomarker Tracking Matrix
-                </h3>
+                <Calendar size={20} className="text-indigo-600" />
+                <h2 className="text-base sm:text-lg font-bold text-slate-900">
+                  Patient Visits &amp; Biomarkers Comparison
+                </h2>
               </div>
               <div className="flex items-center gap-3">
                 <button
                   type="button"
                   onClick={onAddCurrentAsVisit}
-                  className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-mono font-bold flex items-center gap-2 shadow-2xs transition"
+                  className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold flex items-center gap-2 shadow-xs transition"
                 >
                   <PlusCircle size={16} />
-                  <span>Log Current Run</span>
+                  <span>Log Current Run to History</span>
                 </button>
                 <button
                   type="button"
                   onClick={onResetHistory}
-                  className="p-2 rounded-xl bg-white border border-slate-300 hover:bg-slate-50 text-slate-600 transition shadow-2xs"
+                  className="p-2 rounded-xl bg-white border border-slate-300 hover:bg-slate-50 text-slate-600 transition"
                   title="Reset to default 3 visits"
                 >
                   <RotateCcw size={16} />
@@ -195,15 +206,15 @@ export const Screen4History: React.FC<Screen4HistoryProps> = ({
               </div>
             </div>
 
-            {/* Matrix Table */}
+            {/* Matrix Table with Increased Font Sizes */}
             <div className="overflow-x-auto">
-              <table className="w-full text-left font-mono text-sm sm:text-base">
+              <table className="w-full text-left text-base">
                 <thead>
-                  <tr className="border-b border-slate-200 bg-slate-100/70 text-slate-700">
-                    <th className="p-4 sm:p-5 font-sans font-bold text-slate-900 text-sm sm:text-base w-52">Parameter</th>
+                  <tr className="border-b border-slate-200 bg-slate-100/60 text-slate-700">
+                    <th className="p-4 sm:p-5 font-bold text-slate-900 text-sm sm:text-base w-56">Biomarker / Metric</th>
                     {visits.map((visit) => (
                       <th key={visit.id} className="p-4 sm:p-5 text-center font-bold text-slate-900">
-                        <div className="text-sm sm:text-base font-mono">{visit.visitLabel}</div>
+                        <div className="text-base font-bold">{visit.visitLabel}</div>
                         <div className="text-xs text-slate-500 font-normal">{visit.date}</div>
                       </th>
                     ))}
@@ -212,9 +223,9 @@ export const Screen4History: React.FC<Screen4HistoryProps> = ({
                 <tbody className="divide-y divide-slate-100 text-slate-800">
                   {/* Row 1: HR */}
                   <tr className="hover:bg-slate-50/70 transition">
-                    <td className="p-4 sm:p-5 font-bold text-slate-700 text-sm sm:text-base">HR (bpm)</td>
+                    <td className="p-4 sm:p-5 font-semibold text-slate-700">Heart Rate (bpm)</td>
                     {visits.map((v) => (
-                      <td key={v.id} className="p-4 sm:p-5 text-center font-black text-lg sm:text-xl text-slate-900">
+                      <td key={v.id} className="p-4 sm:p-5 text-center font-bold text-xl text-slate-900">
                         {v.hr}
                       </td>
                     ))}
@@ -222,9 +233,9 @@ export const Screen4History: React.FC<Screen4HistoryProps> = ({
 
                   {/* Row 2: MAP */}
                   <tr className="hover:bg-slate-50/70 transition">
-                    <td className="p-4 sm:p-5 font-bold text-slate-700 text-sm sm:text-base">MAP (mmHg)</td>
+                    <td className="p-4 sm:p-5 font-semibold text-slate-700">MAP (mmHg)</td>
                     {visits.map((v) => (
-                      <td key={v.id} className="p-4 sm:p-5 text-center font-black text-lg sm:text-xl text-indigo-700">
+                      <td key={v.id} className="p-4 sm:p-5 text-center font-bold text-xl text-indigo-700">
                         {v.map}
                       </td>
                     ))}
@@ -232,9 +243,9 @@ export const Screen4History: React.FC<Screen4HistoryProps> = ({
 
                   {/* Row 3: Resistance */}
                   <tr className="hover:bg-slate-50/70 transition">
-                    <td className="p-4 sm:p-5 font-bold text-slate-700 text-sm sm:text-base">Resistance (mmHg/cm³/s)</td>
+                    <td className="p-4 sm:p-5 font-semibold text-slate-700">Resistance R (mmHg·s/mL)</td>
                     {visits.map((v) => (
-                      <td key={v.id} className="p-4 sm:p-5 text-center font-black text-lg sm:text-xl text-slate-900">
+                      <td key={v.id} className="p-4 sm:p-5 text-center font-bold text-xl text-slate-900">
                         {v.resistance}
                       </td>
                     ))}
@@ -242,9 +253,9 @@ export const Screen4History: React.FC<Screen4HistoryProps> = ({
 
                   {/* Row 4: Compliance */}
                   <tr className="hover:bg-slate-50/70 transition">
-                    <td className="p-4 sm:p-5 font-bold text-slate-700 text-sm sm:text-base">Compliance (cm³/mmHg)</td>
+                    <td className="p-4 sm:p-5 font-semibold text-slate-700">Compliance Cv (mL/mmHg)</td>
                     {visits.map((v) => (
-                      <td key={v.id} className="p-4 sm:p-5 text-center font-black text-lg sm:text-xl text-emerald-700">
+                      <td key={v.id} className="p-4 sm:p-5 text-center font-bold text-xl text-emerald-700">
                         {v.compliance}
                       </td>
                     ))}
@@ -252,23 +263,23 @@ export const Screen4History: React.FC<Screen4HistoryProps> = ({
 
                   {/* Row 5: AI */}
                   <tr className="hover:bg-slate-50/70 transition">
-                    <td className="p-4 sm:p-5 font-bold text-slate-700 text-sm sm:text-base">Augmentation Index (%)</td>
+                    <td className="p-4 sm:p-5 font-semibold text-slate-700">Augmentation Index (%)</td>
                     {visits.map((v) => (
-                      <td key={v.id} className="p-4 sm:p-5 text-center font-black text-lg sm:text-xl text-rose-600">
+                      <td key={v.id} className="p-4 sm:p-5 text-center font-bold text-xl text-rose-600">
                         {v.ai}%
                       </td>
                     ))}
                   </tr>
 
                   {/* Action row */}
-                  <tr className="bg-slate-50/60">
-                    <td className="p-4 text-xs sm:text-sm text-slate-500 font-sans">Digital Twin Actions:</td>
+                  <tr className="bg-slate-50/80">
+                    <td className="p-4 text-sm text-slate-600 font-medium">Digital Twin Actions:</td>
                     {visits.map((v) => (
                       <td key={v.id} className="p-4 text-center">
                         <button
                           type="button"
                           onClick={() => onLoadVisit(v)}
-                          className="px-3.5 py-1.5 text-xs sm:text-sm font-mono font-bold rounded-lg bg-white hover:bg-indigo-50 text-indigo-700 border border-slate-300 hover:border-indigo-300 transition shadow-2xs"
+                          className="px-4 py-2 text-sm font-semibold rounded-xl bg-white hover:bg-indigo-50 text-indigo-700 border border-slate-300 hover:border-indigo-400 transition shadow-2xs"
                         >
                           Load into Twin
                         </button>
@@ -281,43 +292,42 @@ export const Screen4History: React.FC<Screen4HistoryProps> = ({
           </div>
 
           {/* Longitudinal Trend Chart */}
-          <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs space-y-5">
-            <div className="flex flex-wrap items-center justify-between border-b border-slate-100 pb-4 gap-2">
+          <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-7 shadow-xs space-y-4">
+            <div className="flex flex-wrap items-center justify-between border-b border-slate-100 pb-3 gap-2">
               <div className="flex items-center gap-2.5">
                 <TrendingUp size={20} className="text-indigo-600" />
-                <h3 className="text-sm sm:text-base font-bold font-mono text-slate-900 uppercase tracking-wider">
+                <h2 className="text-base sm:text-lg font-bold text-slate-900">
                   Longitudinal Hemodynamic Trajectory
-                </h3>
+                </h2>
               </div>
-              <div className="flex items-center gap-4 text-xs sm:text-sm font-mono">
-                <span className="flex items-center gap-1.5 text-indigo-700 font-bold">
-                  <span className="w-2.5 h-2.5 rounded-full bg-indigo-600" /> MAP (mmHg)
+              <div className="flex items-center gap-4 text-sm font-semibold">
+                <span className="flex items-center gap-1.5 text-indigo-700">
+                  <span className="w-3 h-3 rounded-full bg-indigo-600" /> MAP (mmHg)
                 </span>
-                <span className="flex items-center gap-1.5 text-rose-600 font-bold">
-                  <span className="w-2.5 h-2.5 rounded-full bg-rose-600" /> AI (%)
+                <span className="flex items-center gap-1.5 text-rose-600">
+                  <span className="w-3 h-3 rounded-full bg-rose-600" /> AI (%)
                 </span>
               </div>
             </div>
 
-            <div className="w-full h-64 sm:h-72">
+            <div className="w-full h-72">
               <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={trendData} margin={{ top: 12, right: 24, left: -16, bottom: 6 }}>
-                  <CartesianGrid stroke="#f1f5f9" strokeDasharray="4 4" />
-                  <XAxis dataKey="visit" tick={{ fill: '#475569', fontSize: 12, fontFamily: 'monospace', fontWeight: 600 }} />
-                  <YAxis domain={['auto', 'auto']} tick={{ fill: '#475569', fontSize: 12, fontFamily: 'monospace', fontWeight: 600 }} />
+                <LineChart data={trendData} margin={{ top: 12, right: 24, left: 0, bottom: 8 }}>
+                  <CartesianGrid stroke="#f1f5f9" strokeDasharray="3 3" />
+                  <XAxis dataKey="visit" tick={{ fill: '#334155', fontSize: 13, fontWeight: 600 }} />
+                  <YAxis domain={['auto', 'auto']} tick={{ fill: '#334155', fontSize: 13, fontWeight: 600 }} />
                   <Tooltip
                     contentStyle={{
                       backgroundColor: '#0f172a',
-                      border: '1px solid #334155',
+                      border: 'none',
                       borderRadius: '12px',
-                      color: '#f8fafc',
-                      fontSize: '13px',
-                      fontFamily: 'monospace',
-                      boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.3)',
+                      color: '#ffffff',
+                      fontSize: '14px',
+                      padding: '10px 14px',
                     }}
                   />
-                  <Line type="monotone" dataKey="MAP" stroke="#4338ca" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
-                  <Line type="monotone" dataKey="AI" stroke="#e11d48" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
+                  <Line type="monotone" dataKey="MAP" stroke="#4338ca" strokeWidth={3.5} dot={{ r: 5 }} activeDot={{ r: 7 }} />
+                  <Line type="monotone" dataKey="AI" stroke="#e11d48" strokeWidth={3.5} dot={{ r: 5 }} activeDot={{ r: 7 }} />
                 </LineChart>
               </ResponsiveContainer>
             </div>
@@ -334,7 +344,16 @@ export const Screen4History: React.FC<Screen4HistoryProps> = ({
         />
       )}
 
-      {/* Subtab 3: Quick Data Analysis & Printable Report */}
+      {/* Subtab 3: Pathology Screening & Clinical Disease Tracking */}
+      {subTab === 'diseases' && (
+        <DiseaseRiskAnalysis
+          inputData={inputData}
+          physiology={physiology}
+          twinOutput={twinOutput}
+        />
+      )}
+
+      {/* Subtab 4: Quick Data Analysis & Printable Report */}
       {subTab === 'export' && (
         <QuickDataAnalysis
           patient={patientProfileAdapter}
@@ -344,11 +363,11 @@ export const Screen4History: React.FC<Screen4HistoryProps> = ({
       )}
 
       {/* Navigation Footer */}
-      <div className="flex items-center justify-between pt-4">
+      <div className="flex items-center justify-between pt-4 pb-6">
         <button
           type="button"
           onClick={onBackToTwin}
-          className="px-6 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm sm:text-base font-bold font-mono flex items-center gap-2 border border-slate-300 transition shadow-2xs"
+          className="px-6 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-base font-semibold flex items-center gap-2 border border-slate-300 transition"
         >
           <ArrowLeft size={18} />
           <span>Back to Digital Twin</span>
@@ -357,9 +376,10 @@ export const Screen4History: React.FC<Screen4HistoryProps> = ({
         <button
           type="button"
           onClick={() => window.print()}
-          className="px-6 py-3.5 rounded-xl bg-white border border-slate-300 hover:bg-slate-50 text-slate-800 text-sm sm:text-base font-mono font-bold shadow-2xs transition"
+          className="px-6 py-3.5 rounded-xl bg-white border border-slate-300 hover:bg-slate-50 text-slate-800 text-base font-semibold shadow-2xs transition flex items-center gap-2 cursor-pointer"
         >
-          Print Clinical Summary
+          <Printer size={18} />
+          <span>Print Clinical Summary</span>
         </button>
       </div>
     </div>

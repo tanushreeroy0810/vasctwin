@@ -459,6 +459,14 @@ export function runSimulation(
     bracketB: B.ps,
     frac,
     alpha: phys.womersleyAlpha,
+    CO: phys.cardiacOutput,
+    SV: phys.strokeVolume,
+    womersleyAlpha: phys.womersleyAlpha,
+    Rv: phys.rv,
+    cvAnchor: phys.cv,
+    tDicrotic: twin.tDicrotic,
+    Ts: phys.cardiacCycle * 0.35,
+    velocityWaveform: twin.waveform.map(w => ({ t: w.t, v: (w.V ?? w.Q ?? 0), V: (w.V ?? w.Q ?? 0) })),
   };
 }
 
@@ -466,7 +474,7 @@ export function getAnchorResults() {
   const nbp = runSimulation(NBP_ANCHOR.ps, NBP_ANCHOR.pd, 75, NBP_ANCHOR.Ri, NBP_ANCHOR.h);
   const ph = runSimulation(PH_ANCHOR.ps, PH_ANCHOR.pd, 75, PH_ANCHOR.Ri, PH_ANCHOR.h);
   const hs1 = runSimulation(HS1_ANCHOR.ps, HS1_ANCHOR.pd, 75, HS1_ANCHOR.Ri, HS1_ANCHOR.h);
-  return { nbp, ph, hs1 };
+  return { nbp, ph, hs1, NBP: nbp, PH: ph, HS1: hs1 };
 }
 
 export const SAMPLE_VELOCITY_CSV = `time_s,velocity_m_s

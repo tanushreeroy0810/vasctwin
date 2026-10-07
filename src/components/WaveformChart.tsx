@@ -34,7 +34,9 @@ export const WaveformChart: React.FC<WaveformChartProps> = ({
   const chartData = result.waveform.map((p, idx) => ({
     t: p.t,
     pressure: p.P,
-    velocity: result.velocityWaveform[idx]?.V !== undefined ? +(result.velocityWaveform[idx].V! * 100).toFixed(1) : undefined, // in cm/s for readability
+    velocity: (result.velocityWaveform?.[idx]?.V ?? result.velocityWaveform?.[idx]?.v) !== undefined 
+      ? +(((result.velocityWaveform?.[idx]?.V ?? result.velocityWaveform?.[idx]?.v)!) * 100).toFixed(1) 
+      : undefined,
     flowRate: p.Q,
   }));
 
@@ -154,7 +156,7 @@ export const WaveformChart: React.FC<WaveformChartProps> = ({
                 fontFamily: 'monospace',
                 boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
               }}
-              labelFormatter={(val) => `Time in Cycle: ${(+val).toFixed(3)}s`}
+              labelFormatter={(val: any) => `Time in Cycle: ${Number(val).toFixed(3)}s`}
               formatter={(val: any, name: string) => {
                 if (name === 'pressure') return [`${val} mmHg`, 'Blood Pressure P(t)'];
                 if (name === 'velocity') return [`${val} cm/s`, 'Flow Velocity V(t)'];

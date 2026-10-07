@@ -12,10 +12,40 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script>
+      // Fix relative assets if accessed on GitHub Pages without trailing slash
+      if (
+        window.location.hostname.endsWith('github.io') &&
+        !window.location.pathname.endsWith('/') &&
+        !window.location.pathname.split('/').pop().includes('.')
+      ) {
+        window.location.replace(
+          window.location.pathname + '/' + window.location.search + window.location.hash
+        );
+      }
+    </script>
   </head>
-  <body>
-    <div id="root"></div>
+  <body class="bg-slate-950 text-slate-100 min-h-screen">
+    <div id="root">
+      <!-- Fallback shown only while bundle loads or if loaded from unbuilt branch -->
+      <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background-color: #020617; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; padding: 24px;">
+        <div style="max-width: 520px; width: 100%; background: #0f172a; border: 1px solid #1e293b; border-radius: 16px; padding: 32px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); text-align: center;">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+            </svg>
+          </div>
+          <h1 style="font-size: 20px; font-weight: 700; margin: 0 0 8px 0; color: #ffffff;">VascTwin Heart Pulse</h1>
+          <p style="font-size: 14px; color: #94a3b8; margin: 0 0 20px 0;">Loading Hemodynamic Digital Twin...</p>
+          <div style="display: inline-block; width: 32px; height: 32px; border: 3px solid rgba(56, 189, 248, 0.2); border-top-color: #38bdf8; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+          <style>@keyframes spin { to { transform: rotate(360deg); } }</style>
+          <div style="margin-top: 24px; text-align: left; background: #020617; border: 1px solid #1e293b; border-radius: 8px; padding: 12px; font-size: 12px; color: #64748b;">
+            <strong style="color: #94a3b8;">Deploying to GitHub Pages?</strong><br/>
+            Ensure repo <em>Settings &rarr; Pages &rarr; Source</em> is set to <strong>GitHub Actions</strong> (not "Deploy from branch root").
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-

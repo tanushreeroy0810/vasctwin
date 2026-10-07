@@ -21,7 +21,8 @@ export const QuickDataAnalysis: React.FC<QuickDataAnalysisProps> = ({
     csvContent += 'Time_sec,BloodPressure_mmHg,FlowVelocity_cms,FlowRate_mLs\n';
 
     result.waveform.forEach((pt, idx) => {
-      const v = result.velocityWaveform[idx]?.V !== undefined ? (result.velocityWaveform[idx].V! * 100).toFixed(2) : '0';
+      const velVal = result.velocityWaveform?.[idx]?.V ?? result.velocityWaveform?.[idx]?.v;
+      const v = velVal !== undefined ? (velVal * 100).toFixed(2) : '0';
       const q = pt.Q !== undefined ? pt.Q.toFixed(2) : '0';
       csvContent += `${pt.t},${pt.P},${v},${q}\n`;
     });

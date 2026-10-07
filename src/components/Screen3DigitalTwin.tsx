@@ -148,7 +148,7 @@ export const Screen3DigitalTwin: React.FC<Screen3DigitalTwinProps> = ({
             `${(+value).toFixed(1)} ${name === 'P' ? 'mmHg' : 'mL/s'}`,
             name === 'P' ? 'Carotid Pressure' : 'Flow Rate',
           ]}
-          labelFormatter={(t) => `Time: ${(+t).toFixed(3)} s`}
+          labelFormatter={(t: any) => `Time: ${Number(t).toFixed(3)} s`}
         />
 
         {/* Clinical Reference Lines */}

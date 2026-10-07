@@ -102,6 +102,14 @@ export interface SimulationResult {
   bracketB: number;
   frac: number;
   alpha: number;
+  cvAnchor?: number;
+  CO?: number;
+  SV?: number;
+  womersleyAlpha?: number;
+  Rv?: number;
+  velocityWaveform?: { t: number; v?: number; V?: number }[];
+  Ts?: number;
+  tDicrotic?: number;
 }
 
 export interface RiskClassification {

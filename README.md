@@ -222,6 +222,27 @@ The platform directly integrates real-world cardiovascular datasets from **Kaggl
 
 ---
 
+## 🚀 GitHub Pages Deployment Guide
+
+If you see a **blank white page** on GitHub Pages, it is because GitHub Pages is trying to serve raw unbuilt files from the repository root instead of the compiled build output (`dist`).
+
+Follow either method below for a clean deployment:
+
+### Option 1: GitHub Actions (Recommended & Fully Automated)
+1. In your GitHub repository, navigate to **Settings** &rarr; **Pages** (in the left sidebar).
+2. Under **Build and deployment** &rarr; **Source**, click the dropdown and select **GitHub Actions** (do NOT select "Deploy from a branch").
+3. Go to the **Actions** tab in GitHub, select **Deploy Vite React App to GitHub Pages**, and click **Run workflow** (or simply push any commit).
+4. Wait ~1 minute for the green checkmark. Your site will be live at `https://<your-username>.github.io/<repo-name>/`.
+
+### Option 2: Command Line Deployment via `gh-pages`
+If you prefer running a single command locally:
+```bash
+npm run deploy
+```
+This automatically compiles the project into `dist` and pushes it directly to the `gh-pages` branch. Then in **Settings** &rarr; **Pages**, set **Source** to **Deploy from a branch** &rarr; branch: `gh-pages` &rarr; folder: `/ (root)`.
+
+---
+
 ## ⚠️ Clinical Simulation Disclaimer
 
 *VascTwin Heart Pulse is a computational physiological simulation tool designed for research, academic evaluation, and clinical decision support prototyping. Diagnostic and therapeutic decisions should be made in accordance with clinical guidelines and confirmed by certified medical professionals using direct diagnostic imaging and validated pressure catheters.*
